@@ -8,7 +8,7 @@ public class ChapterController {
     private  String TAG="ChapterController";
     @RequestMapping(value = "/hello")
     public  String sayHello(){
-        System.out.println(TAG+"123");
+        System.out.println(TAG+"返回");
         return "hello Springboot  你好!";
     }
 }
