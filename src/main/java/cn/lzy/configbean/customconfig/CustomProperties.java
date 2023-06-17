@@ -1,38 +1,26 @@
-package cn.lzy.configbean;
-
+package cn.lzy.configbean.customconfig;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-
 @Component
-@ConfigurationProperties(prefix = "student")
-public class Student {
-    private int id;
+@Configuration
+@PropertySource("classpath:custom.properties")//指定自定义配置文件的路径和名字
+@EnableConfigurationProperties(CustomProperties.class)
+@ConfigurationProperties(prefix = "custom-properties")
 
-    private String name;
-    private int age;
-    private String[] hobby;
+public class CustomProperties {
+    private int id;
+    private  String name;
+    private  int age;
+    private  String[] hobby;
     private List electProduct;
     private Map friends;
-
-    private  Course course;
-
-
-    @Override
-    public String toString() {
-        return "Student{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                ", hobby=" + Arrays.toString(hobby) +
-                ", electProduct=" + electProduct +
-                ", friends=" + friends +
-                ", course=" + course +
-                '}';
-    }
 
     public int getId() {
         return id;
@@ -82,11 +70,15 @@ public class Student {
         this.friends = friends;
     }
 
-    public Course getCourse() {
-        return course;
-    }
-
-    public  void setCourse(Course course) {
-        this.course = course;
+    @Override
+    public String toString() {
+        return "CustomProperties{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", hobby=" + Arrays.toString(hobby) +
+                ", electProduct=" + electProduct +
+                ", friends=" + friends +
+                '}';
     }
 }
