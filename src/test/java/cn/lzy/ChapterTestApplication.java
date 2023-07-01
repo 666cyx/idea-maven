@@ -6,6 +6,8 @@ import cn.lzy.configbean.User;
 import cn.lzy.controller.ChapterController;
 import cn.lzy.customconfig.CustomProperties;
 import cn.lzy.customconfig.MyProperties;
+import cn.lzy.mybatiscatalog.Comment;
+import cn.lzy.mybatiscatalog.CommentMapper;
 import cn.lzy.profielconfig.DBConnector;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -41,6 +43,9 @@ public class ChapterTestApplication {
 
     @Autowired
     DBConnector dbConnector;
+
+    @Autowired
+   CommentMapper commentMapper;
     @Test
     public void contextLoads() {
         System.out.println("单元测试返回的数据--" + chapterController.sayHello());
@@ -50,13 +55,15 @@ public class ChapterTestApplication {
         System.out.println("单元测试返回的person数据--" + person);
     System.out.println("单元测试返回的customproperties数据--" +customProperties);
         System.out.println("单元测试返回的profile环境--" + dbConnector.config());
+        System.out.println("查询数据库" + commentMapper.findById(1));
+       // System.out.println("查询数据库" + commentMapper.findById(1));
 
-      MyProperties myProperties=(MyProperties) applicationContext.getBean("myProperties");
-if (myProperties!=null){
-    System.out.println("MyPropertie类注入不成功");
-}else {
-   myProperties.getResult();
-}
+        /*MyProperties myProperties=(MyProperties) applicationContext.getBean("myProperties");
+        if (myProperties!=null){
+            System.out.println("MyPropertie类注入不成功");
+        }else {
+            myProperties.getResult();
+        }*/
     }
 //    public void  getHello(){
 //        String result=chapterController.sayHello();
